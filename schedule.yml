@@ -1,0 +1,23 @@
+name: $(SourceBranchName).$(Date:yyyyMMdd).$(Rev:r)
+trigger:
+  branches:
+    include:
+      - develop
+      - hotfix/*
+      - hotfix-*
+      - master
+pr:
+  - develop
+  - master
+variables:
+  -   group: var-grp-demo
+  -   name: MAVEN_CACHE_FOLDER
+      value: $(Build.SourcesDirectory)/m2-repository
+  -   name: MAVEN_OPTS
+      value: -Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)
+  -   name: CACHED_FOLDERS
+stages:
+    - ${{ if ne(variables['Build.Reason'], 'schedule') }}:
+          - template: azure-pipelines.yml
+    - ${{ if eq(variables['Build.Reason'], 'schedule') }}:
+          - template: runQA.yml

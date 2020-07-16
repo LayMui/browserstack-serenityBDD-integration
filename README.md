@@ -1,4 +1,4 @@
-# kcp-test-automation
+# test-automation
 # Getting started instructions
 ### The project directory structure
 The project has two test modules
@@ -70,7 +70,7 @@ and know how to convert those commands into the specific browser's proprietary n
 The test framework is integrated into the CI pipeline in Azure DevOps using the azure-pipelines.yml    
 
 To run on browserstack accessed from the browserstack dashboard 
-at https://automate.browserstack.com/dashboard/v2/
+
 export BROWSERSTACK_USERNAME=<browserstack-username> &&
 export BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
 
